@@ -60,8 +60,8 @@ class Cnn:
                                     target_size=(self.img_size, self.img_size))
         test_image = image.img_to_array(test_image)
         test_image = np.expand_dims(test_image, axis=0)
-        result = np.argmax(model.predict(test_image)[0])
-        print(np.argmax(model.predict(test_image)[0]))
+        print(model.predict(test_image / 255.0))
+        result = np.argmax(model.predict(test_image))
         if result == 0:
             prediction = 'Rice'
         elif result == 1:
@@ -79,6 +79,5 @@ if __name__ == '__main__':
     detect_image_path = './data/rice.jpg'
     # model.fit_model()
     print(model.classify_image(detect_image_path, load_model('./save/my_model.h5')))
-    my_model = load_model('./save/my_model.h5')
-    print(my_model.summary())
-
+    # my_model = load_model('./save/my_model.h5')
+    # print(my_model.summary())
